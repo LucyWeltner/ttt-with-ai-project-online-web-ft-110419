@@ -32,10 +32,10 @@ class Game
   end
   def won?
     winning_states = self.win_conditions
+    win = false
     winning_states.each do |state|
-      win = false
-      if @board[state][0] == @board[state][1] && @board[state][1] == @board[state][2]
-        win = true
+      if @board.cells[state[0]] == @board.cells[state[1]] && @board.cells[state[1]] == @board.cells[state[2]]
+        return state
       end
     end 
     win 
