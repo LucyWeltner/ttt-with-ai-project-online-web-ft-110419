@@ -11,7 +11,7 @@ class Board
         puts "\n-----------"
       end
       3.times do |column|
-        print " #{@cells[column]} |"
+        print " #{@cells[column+row*3]} |"
       end
     end
   end 
@@ -21,7 +21,10 @@ class Board
   end
   
   def update(space, player_obj)
-    position(space) = player_obj.token
+    if valid_move?(space)
+      space1 = position(space) 
+      space1 = player_obj.token
+    end
   end 
   
   def full?
@@ -42,17 +45,10 @@ class Board
   
   def valid_move?(space)
     valid_move = false 
-    index = self.position(space)
-    if !self.taken?(index) && index
+    if !self.taken?(space) && space.to_i < 10 && space.to_i > 0
       valid_move = true 
     end 
     valid_move
-  end
-  
-  def update(space, player)
-    if valid_move?(space)
-      update(space, player)
-    end 
   end
   
   def reset! 
