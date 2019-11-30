@@ -22,8 +22,7 @@ class Board
   
   def update(space, player_obj)
     if valid_move?(space)
-      space1 = position(space) 
-      space1 = player_obj.token
+      @cells[space.to_i - 1] = player_obj.token
     end
   end 
   
