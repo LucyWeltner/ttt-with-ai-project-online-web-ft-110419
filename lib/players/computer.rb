@@ -1,3 +1,4 @@
+require "pry"
 module Players 
   class Computer < Player 
     def move(board)
@@ -9,6 +10,7 @@ module Players
       end
       p spots
       spots.sample
+      binding.pry
       # rand(1..9).to_s
     end
   end 
