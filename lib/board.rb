@@ -1,4 +1,4 @@
-class Board
+ class Board
   attr_accessor :cells
   
   def initialize
@@ -23,6 +23,10 @@ class Board
   def update(space, player_obj)
     if valid_move?(space)
       @cells[space.to_i - 1] = player_obj.token
+    else 
+      while !valid_move?(space)
+        space = player_obj.move(self) 
+      end
     end
   end 
   
