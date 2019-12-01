@@ -14,6 +14,7 @@
         print " #{@cells[column+row*3]} |"
       end
     end
+    puts "\n"
   end 
   
   def position(space)
@@ -25,6 +26,7 @@
       @cells[space.to_i - 1] = player_obj.token
     else 
       while !valid_move?(space)
+        puts "\nThat space is taken!\n"
         space = player_obj.move(self) 
       end
     end
