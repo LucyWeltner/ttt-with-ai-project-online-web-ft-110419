@@ -5,7 +5,7 @@ module Players
       p board.cells
       board.cells.each_with_index do |spot, index|
         if spot == " "
-          spots << index.to_s
+          spots << index.to_s + 1
         end 
       end
       p spots
