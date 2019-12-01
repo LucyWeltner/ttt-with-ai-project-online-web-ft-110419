@@ -85,5 +85,49 @@ class Game
       puts "\n"
       puts "Cat's Game!"
     end
+    puts "Would you like to play again? Press y for yes or n for no"
+    input = gets.chomp! 
+    if input == "y" || input == "Y"
+      start 
+    end
+  end
+  
+  def start 
+    puts "Hello, welcome to Tic Tac Toe!"
+    puts "What type of game do you want to play? Type 0 for 0 player (all virtual), 1 for 1 for one player, and 2 for two player."
+    type_of_game = gets.chomp!
+    until type_of_game == "1" || type_of_game == "0" || type_of_game == "2"
+      puts "Please type 0, 1 or 2"
+      type_of_game = gets.chomp!
+    end 
+    if type_of_game == "0" 
+      new_game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new) 
+      new_game.play
+    else
+      puts "Would you like to go first? Press Y for yes or N for no."
+      first = gets.chomp!
+      until first == "Y" || first == "y" || first == "N" || first == "n"
+        puts "Please enter Y if you would like to go first or N if you would like to go second."
+        first = gets.chomp!
+      end 
+      if type_of_game == "1"
+        if first == "Y" || first == "y" 
+          new_game = Game.new(Players::Human.new("X"), Players::Computer.new("O"), Board.new)
+          new_game.play
+        else 
+          new_game = Game.new(Players::Computer.new("X"), Players::Human.new("O"), Board.new)
+          new_game.play
+        end
+      end
+      if type_of_game == "2"
+        if first == "Y" || first == "y" 
+          new_game = Game.new(Players::Human.new("X"), Players::Human.new("O"), Board.new)
+          new_game.play
+        else 
+          new_game = Game.new(Players::Human.new("X"), Players::Human.new("O"), Board.new)
+          new_game.play
+        end
+      end 
+    end
   end
 end
